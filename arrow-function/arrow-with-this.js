@@ -8,6 +8,7 @@
  *
  */
 
+// Class in OO style
 class Person {
   constructor(name) {
     this.name = name;
@@ -31,6 +32,7 @@ class Person {
 
   // Use arrow functions for everything else.
   addSuffixArrow = (suffix) => {
+    // console.log('.. Arrow Function as non-method.. \n' + suffix + this.name);
     setTimeout(() => {
       console.log('.. Arrow Function with `this.`.. \n' + suffix + this.name);
     }, 100);
@@ -39,7 +41,51 @@ class Person {
 }
 
 const name = 'Bob';
+this.name = 'Tony';
 let person = new Person(name);
 person.addSuffix('Dr. ');
 person.addSuffixHistory('Dr. ');
 person.addSuffixArrow('General. ');
+
+
+// Function in OO style
+function LivingPerson() {
+  // The Person() constructor defines `this` as an instance of itself.
+  const self = this;
+  this.age = 0;
+
+  const stopIndex = setInterval(function growUp() {
+    // In non-strict mode, the growUp() function defines `this`
+    // as the global object (because it's where growUp() is executed.), 
+    // which is different from the `this`
+    // defined by the Person() constructor.
+    self.age++;
+    console.log('.. The Age of Living Person .. \n', self.age);
+  }, 1000);
+  return stopIndex;
+}
+
+const stopIndex = LivingPerson();
+
+
+// Arrow functions & Normal function used a Methods in an Object
+function asMethodsInObject(currentAge=0) {
+  return {
+    age: currentAge,
+    nextYearArrow: () => {
+      console.log('.. Arrow Function as Methods in an Object .. ',
+        this.age,
+        JSON.stringify(this)
+      );
+    },
+    nextYear: function() {
+      console.log('.. Normal Function as Methods in an Object .. ',
+        this.age,
+        JSON.stringify(this)
+      );
+    }
+  };
+}
+const p2 = new asMethodsInObject();
+p2.nextYearArrow();
+p2.nextYear();
