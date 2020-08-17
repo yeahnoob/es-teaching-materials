@@ -1,0 +1,12 @@
+{
+  "name": "arrow-function",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "arrow-with-this": "node arrow-with-this.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GNU General Public License v3.0"
+}
