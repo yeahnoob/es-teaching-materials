@@ -1,0 +1,24 @@
+{
+  "name": "websockets-server-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node ./src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^10.0.0",
+    "winston": "^3.3.3",
+    "winston-koa-logger": "0.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.9"
+  }
+}
