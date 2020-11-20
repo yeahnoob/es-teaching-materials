@@ -14,7 +14,7 @@ let logColor : boolean = true;
  *
  * @param {object} winstonInstance
  */
-export function logger(winstonInstance, color = logColor) {
+function koaLogger(winstonInstance, color = logColor): Function {
     return async (ctx, next) => {
         const start = new Date();
         try {
@@ -33,6 +33,7 @@ export function logger(winstonInstance, color = logColor) {
 
         if(!color) {
             let msg = {
+                event: 'client access',
                 method: `${ctx.method}`,
                 originalUrl: `${ctx.originalUrl}`,
                 status: `${ctx.status}`,
@@ -49,9 +50,13 @@ export function logger(winstonInstance, color = logColor) {
     };
 }
 
-export function enableLogColor() {
+// TODO: is a custom Type needed at here?
+function enableLogColor(): boolean {
     return true
 }
-export function disableLogColor() {
+function disableLogColor(): boolean {
     return false
 }
+
+export { koaLogger, enableLogColor, disableLogColor }
+

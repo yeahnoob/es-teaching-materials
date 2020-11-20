@@ -5,7 +5,7 @@ import * as bodyParser from 'koa-bodyparser'
 
 // Winston instance.
 import { logger } from './logger/winston'
-import { logger as winstonKoaLogger, disableLogColor } from './logger/winston-koa-logger'
+import { koaLogger as winstonKoaLogger , disableLogColor } from './logger/winston-koa-logger'
 
 const app = new Koa();
 const router = new Router();
@@ -22,5 +22,5 @@ app.use(bodyParser())
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(3000, ()=> {
-    logger.info({event: 'Koa started'})
+    logger.log('info', {event: 'Koa started'})
 });
