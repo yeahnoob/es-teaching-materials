@@ -10,8 +10,19 @@ import { koaLogger as winstonKoaLogger , disableLogColor } from './logger/winsto
 const app = new Koa();
 const router = new Router();
 
+interface HiRequest {
+    name: string
+}
+
 router.get('/', async (ctx, next) => {
-    ctx.body={msg: 'Hi Bro!'}
+    ctx.body={msg: 'Hi Bro!!'}
+    await next()
+});
+
+router.post('/', async (ctx, next) => {
+    // `data` is restricted by the `HiRequest` interface definition.
+    const data = <HiRequest>ctx.request.body
+    ctx.body = {name: data.name}
     await next()
 });
 
@@ -22,5 +33,5 @@ app.use(bodyParser())
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(3000, ()=> {
-    logger.log('info', {event: 'Koa started'})
+    logger.log('info', {event: `Koa started @${(new Date()).toJSON()}`})
 });

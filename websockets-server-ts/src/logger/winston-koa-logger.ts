@@ -33,10 +33,11 @@ function koaLogger(winstonInstance, color = logColor): Function {
 
         if(!color) {
             let msg = {
-                event: 'client access',
+                event: `client access @${(new Date()).toJSON()}`,
                 method: `${ctx.method}`,
                 originalUrl: `${ctx.originalUrl}`,
                 status: `${ctx.status}`,
+                bodyLength: `${JSON.stringify(ctx.body)}`.length,
                 delay: `${ms}ms`
             };
             winstonInstance.log(logLevel, msg);
