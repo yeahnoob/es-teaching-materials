@@ -11,3 +11,5 @@ dist/
 *.key
 *.sec
 *.pem
+
+*.log
